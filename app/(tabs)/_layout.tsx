@@ -1,19 +1,30 @@
 import { Link, Tabs } from 'expo-router';
 
 import { HeaderButton } from '../../components/HeaderButton';
-import { TabBarIcon } from '../../components/TabBarIcon';
+
+import { HeroIcons } from '~/components/HeroIcons';
+
+const IconSize = 32;
 
 export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: 'black',
+        tabBarStyle: {
+          paddingTop: 8,
+          paddingBottom: 8,
+          height: 100,
+        },
       }}>
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          headerShown: false,
+          title: '',
+          tabBarIcon: ({ color }) => (
+            <HeroIcons.Outline.Inbox width={IconSize} height={IconSize} color={color} />
+          ),
           headerRight: () => (
             <Link href="/modal" asChild>
               <HeaderButton />
@@ -22,10 +33,21 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="agenda"
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: '',
+          headerShown: false,
+          tabBarIcon: ({ color }) => (
+            <HeroIcons.Outline.Calendar width={IconSize} height={IconSize} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="settings"
+        options={{
+          title: '',
+          headerShown: false,
+          tabBarIcon: ({ color }) => <HeroIcons.Outline.Cog width={34} height={34} color={color} />,
         }}
       />
     </Tabs>
