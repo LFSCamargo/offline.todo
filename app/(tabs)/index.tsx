@@ -37,7 +37,7 @@ export default function Home() {
             <Text className="text-white">LF</Text>
           </View>
         </View>
-        <TodosForDate date={new Date()} />
+        <TodosForDate date={new Date()} isInbox />
         <View className="absolute bottom-0 left-0 right-0 flex flex-row gap-4 bg-neutral-200 p-4">
           <Controller
             control={control}

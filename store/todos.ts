@@ -17,6 +17,7 @@ export type TodoState = {
   todosForDay: (day: Date) => Todo[];
   removeTodo: (id: string) => void;
   markAsCompleted: (id: string) => void;
+  deleteAllTodos: () => void;
 };
 
 export const useTodos = create<TodoState, [['zustand/persist', TodoState]]>(
@@ -31,6 +32,7 @@ export const useTodos = create<TodoState, [['zustand/persist', TodoState]]>(
           return todo.date >= dayStart && todo.date <= dayEnd;
         });
       },
+      deleteAllTodos: () => set({ todos: [] }),
       addTodo(todo, date = new Date()) {
         set({
           todos: [
