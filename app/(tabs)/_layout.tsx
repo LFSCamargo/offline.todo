@@ -43,6 +43,16 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name="shared-notes"
+        options={{
+          title: '',
+          headerShown: false,
+          tabBarIcon: ({ color }) => (
+            <HeroIcons.Outline.Users width={IconSize} height={IconSize} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
         name="settings"
         options={{
           title: '',

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
-import { Dimensions, Text, TouchableOpacity, View } from 'react-native';
-import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
+import { Dimensions, Text, TouchableOpacity } from 'react-native';
+import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   runOnJS,
   useAnimatedStyle,
@@ -20,7 +20,7 @@ interface IFieldSwipe {
   todo: TodoState['todos'][0];
 }
 
-const TodoSwipeableRow: React.FC<IFieldSwipe> = ({ todo }) => {
+export const TodoSwipeableRow: React.FC<IFieldSwipe> = ({ todo }) => {
   const innerRef = useRef<Animated.View>(null);
   const swipeTranslateX = useSharedValue(0);
   const pressed = useSharedValue(false);
@@ -102,14 +102,4 @@ const TodoSwipeableRow: React.FC<IFieldSwipe> = ({ todo }) => {
       </Animated.View>
     </GestureDetector>
   );
-};
-
-// eslint-disable-next-line @typescript-eslint/ban-types
-function TodoSwipeableContainer({ children }: React.PropsWithChildren<{}>) {
-  return <GestureHandlerRootView>{children}</GestureHandlerRootView>;
-}
-
-export const TodoSwipeable = {
-  Row: TodoSwipeableRow,
-  Container: TodoSwipeableContainer,
 };

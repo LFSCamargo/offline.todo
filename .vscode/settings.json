@@ -1,0 +1,4 @@
+{
+  // "vscode-vitest.testCommand": "test"
+  "vscode-vitest.testCommand": "npm run test"
+}

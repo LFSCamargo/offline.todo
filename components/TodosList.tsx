@@ -1,30 +1,28 @@
-import { Dimensions, Image, Text, View } from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
+import { Dimensions, Text, View, FlatList } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Animated from 'react-native-reanimated';
 
 import { Separator } from './Separator';
-import { TodoSwipeable } from './TodoSwipeable';
+import { TodoSwipeableRow } from './TodoSwipeableRow';
 
 import { NoTodos, NoTodosForDate } from '~/assets';
-import { useTodos } from '~/store/todos';
+import { TodoState } from '~/store/todos';
 
 const screenHeight = Dimensions.get('screen').height;
 
 type Props = {
-  date: Date;
   isInbox?: boolean;
+  todolist: TodoState['todos'];
 };
 
-export function TodosForDate({ date, isInbox = false }: Props) {
-  const { todosForDay } = useTodos();
-
+export function TodosList({ todolist, isInbox = false }: Props) {
   return (
-    <TodoSwipeable.Container>
+    <GestureHandlerRootView>
       <FlatList
-        style={{ marginTop: 16 }}
-        data={todosForDay(date)}
+        style={{ marginTop: isInbox ? 16 : 40 }}
+        data={todolist}
         ItemSeparatorComponent={() => <Separator />}
-        renderItem={({ item }) => <TodoSwipeable.Row todo={item} />}
+        renderItem={({ item }) => <TodoSwipeableRow todo={item} />}
         keyExtractor={(item) => item.id}
         ListEmptyComponent={() => (
           <View
@@ -43,6 +41,6 @@ export function TodosForDate({ date, isInbox = false }: Props) {
           </View>
         )}
       />
-    </TodoSwipeable.Container>
+    </GestureHandlerRootView>
   );
 }
